@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TporcentajeCreateDlg" widgetVar="TporcentajeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nuevo Porcentaje" showEffect="fade" hideEffect="explode">
+            <h:form id="TporcentajeCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{controladorPorcentaje.objPorcentaje != null}" styleClass="tblForm">
+
+                        <p:outputLabel value="Porcentaje Menor:" for="tporcentajemenor" />
+                        <p:inputText id="tporcentajemenor" value="#{controladorPorcentaje.objPorcentaje.porcentajeMenor}" title="Porcentaje Menor" required="true" requiredMessage="El campo porcentaje menor es requerido!"/>
+                        
+                        <p:outputLabel value="Porcentaje Mayor:" for="tporcentajemayor" />
+                        <p:inputText id="tporcentajemayor" value="#{controladorPorcentaje.objPorcentaje.porcentajeMayor}" title="Porcentaje Mayor" required="true" requiredMessage="El campo porcentaje mayor es requerido!"/>
+
+                    </p:panelGrid>     
+                    <p:separator/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PF('TporcentajeCreateDialog').hide()" type="reset" styleClass="btnRight"/>
+                    <p:commandButton actionListener="#{controladorPorcentaje.insertarTipoUsuario()}" value="#{bundle.Save}" update="display,:TporcentajeListForm:datalist,:growl" styleClass="btnRight"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

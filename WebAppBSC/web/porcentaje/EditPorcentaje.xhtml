@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TporcentajeEditDlg" widgetVar="TporcentajeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Datos" showEffect="fade" hideEffect="explode">
+            <h:form id="TporcentajeEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{controladorPorcentaje.selObjPorcentaje != null}" styleClass="tblForm">
+                        
+                        <p:outputLabel value="Porcentaje Menor:" for="tporcentajemenor" />
+                        <p:inputText id="tporcentajemenor" value="#{controladorPorcentaje.selObjPorcentaje.porcentajeMenor}" title="Porcentaje Menor" required="true" requiredMessage="El campo porcentaje menor es requerido!"/>
+                        
+                        <p:outputLabel value="Porcentaje Mayor:" for="tporcentajemayor" />
+                        <p:inputText id="tporcentajemayor" value="#{controladorPorcentaje.selObjPorcentaje.porcentajeMayor}" title="Porcentaje Mayor" required="true" requiredMessage="El campo porcentaje mayor es requerido!"/>
+                    </p:panelGrid>
+                    <p:separator/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PF('TporcentajeEditDialog').hide()" styleClass="btnRight"/>
+                    <p:commandButton actionListener="#{controladorPorcentaje.actualizarTipoUsuario()}" value="#{bundle.Save}" update="display,:TporcentajeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TporcentajeEditDialog');" styleClass="btnRight"/>     
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
