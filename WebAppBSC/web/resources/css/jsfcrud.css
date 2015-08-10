@@ -53,8 +53,13 @@
 }
 .titulo{
     color: black;
-    font-size: 36px !important;
+    font-size: 20px !important;
     font-weight: 500;
+}
+.titulo1{
+    color: white;
+    font-size: 36px !important;
+    font-weight: bold;
 }
 
 

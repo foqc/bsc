@@ -16,40 +16,45 @@
 
         <p:growl id="growl" life="3000" />
 
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="65" header="Balance Score Card">
-                <h:form id="menuForm">
-                    <p:menubar>
-                        <p:menuitem value="Inicio" outcome="/UsuarioNormal/user.xhtml" icon="ui-icon-home"/>
-                        <p:menuitem value="Areas" outcome="/index.html" icon="ui-icon-home"/>
-                        <p:menuitem value="Perspectivas" outcome="/index.html" icon="ui-icon-home"/>
-                        <p:menuitem value="Objetivos" outcome="/index.html" icon="ui-icon-home"/>
-                        <p:menuitem value="Proyectos" outcome="/index.html" icon="ui-icon-home"/>
-                        <p:submenu label="#{controladorLogin.objUsuario.alias}" icon="ui-icon-gear" style="float: right;margin-right: 100px;">
-                            <p:menuitem value="Mis Datos" outcome="/UsuarioNormal/misdatos/ListUser.xhtml" icon="ui-icon-contact"/>
-                            <p:menuitem value="Ayuda"  outcome="/UsuarioNormal/misdatos/ListUser.xhtml" icon="ui-icon-help"/>                            
-                            <p:separator />
-                            <p:menuitem value="Salir" actionListener="#{controladorLogin.logout}"
-                                        style="margin-right:20px;"
-                                        oncomplete="logout(xhr, status, args)" icon="ui-icon-extlink"/>
-                        </p:submenu>
-                        <f:facet name="options">
-                            <p:inputText style="margin-right:10px" placeholder="Buscar"/>
-                        </f:facet>
-                    </p:menubar>
 
-                </h:form>
-            </p:layoutUnit>
+        <p:layoutUnit position="north" size="100" styleClass="myBorder" >
+            <div class="centro">
+                <p:graphicImage   value="/resources/images/chipFIE.png"   styleClass="imgPrincipal"/>                    
+                <p:graphicImage   value="/resources/images/SGI.png"  styleClass="imgPrincipal1"/>
+                <div class="menu">
+                    <p:outputLabel value="Balanced Score Card" styleClass="titulo1"/>
+                </div>
+            </div>
+            <h:form id="menuForm">
+                <p:menubar>
+                    <p:menuitem value="Inicio" outcome="/UsuarioNormal/user.xhtml" icon="ui-icon-home"/>
+                    <p:menuitem value="Avance Proyectos" url="" icon="ui-icon-arrowthick-1-ne"/>
+                    <p:submenu label="#{controladorLogin.objUsuario.alias}" icon="ui-icon-gear" style="float: right;margin-right: 100px;">
+                        <p:menuitem value="Mis Datos" outcome="/UsuarioNormal/misdatos/ListUser.xhtml" icon="ui-icon-locked"/>
+                        <p:menuitem value="Ayuda"  outcome="/UsuarioNormal/misdatos/ListUser.xhtml" icon="ui-icon-help"/>                            
+                        <p:separator />
+                        <p:menuitem value="Salir" actionListener="#{controladorLogin.logout}"
+                                    style="margin-right:20px;"
+                                    oncomplete="logout(xhr, status, args)" icon="ui-icon-power"/>
+                    </p:submenu>
+                    <f:facet name="options">
+                        <p:inputText style="margin-right:10px" placeholder="Buscar"/>
+                    </f:facet>
+                </p:menubar>
 
-            <p:layoutUnit position="south" size="60">
-                <ui:insert name="footer"/>
-            </p:layoutUnit>
+            </h:form>
+        </p:layoutUnit>
 
-            <p:layoutUnit position="center">
-                <ui:insert name="body"/>
-            </p:layoutUnit>
-
-        </p:layout>
+        <p:layoutUnit position="center" styleClass="maxContenido">
+            <ui:insert name="body"/>
+        </p:layoutUnit>
+        <p:layoutUnit position="south" size="110" styleClass="myBorder" >
+            <div class="centro">
+                <p:graphicImage  value="/resources/images/CONECTADOS.png"  styleClass="imgPiePrincipal"/><br></br>
+                <h:outputText value="Todos los derechos reservados fie." styleClass="textoPie"/>
+            </div>
+            <ui:insert name="footer"/>
+        </p:layoutUnit>
 
     </h:body>
     <script type="text/javascript">
