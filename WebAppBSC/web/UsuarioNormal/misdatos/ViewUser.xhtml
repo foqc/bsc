@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TusuarioViewDlg" widgetVar="TusuarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Datos Usuario" showEffect="fade" hideEffect="explode">
+            <h:form id="TusuarioViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" styleClass="tblForm">
+                        <h:outputText value="Código:" />
+                        <h:outputText value="#{controladorUsuario.selObjUsuario.codigo}" title="Código" styleClass="tblFormRow"/>
+                        
+                        <h:outputText value="Cédula:"/>
+                        <h:outputText value="#{controladorUsuario.selObjUsuario.cedula}" title="Cédula" styleClass="tblFormRow"/>
+                        
+                        <h:outputText value="Nombres:"/>
+                        <h:outputText value="#{controladorUsuario.selObjUsuario.nombres}" title="Nombres" styleClass="tblFormRow"/>
+                        
+                        <h:outputText value="Apellidos:"/>
+                        <h:outputText value="#{controladorUsuario.selObjUsuario.apellidos}" title="Apellidos" styleClass="tblFormRow"/>
+                        
+                        <h:outputText value="Alias:"/>
+                        <h:outputText value="#{controladorUsuario.selObjUsuario.alias}" title="Alias" styleClass="tblFormRow"/>
+                        
+                        
+                        <h:outputText value="Teléfono:"/>
+                        <h:outputText value="#{controladorUsuario.selObjUsuario.telefono}" title="Teléfono" styleClass="tblFormRow"/>
+                        
+                        <h:outputText value="Celular:"/>
+                        <h:outputText value="#{controladorUsuario.selObjUsuario.celular}" title="Celular" styleClass="tblFormRow"/>
+                        
+                        <h:outputText value="Correo:"/>
+                        <h:outputText value="#{controladorUsuario.selObjUsuario.correo}" title="Correo" styleClass="tblFormRow"/>
+                        
+                        <h:outputText value="Dirección:"/>
+                        <h:outputText value="#{controladorUsuario.selObjUsuario.direccion}" title="Dirección" styleClass="tblFormRow"/>
+                        
+                        <h:outputText value="Tipo Usuario"/>
+                        <h:outputText value="#{controladorUsuario.selObjUsuario.objTipoUsuario.descripcion}" title="Tipo Usuario" styleClass="tblFormRow"/>
+                    </p:panelGrid>
+                    <p:separator/>
+                    <p:commandButton value="#{bundle.Close}" onclick="PF('TusuarioViewDialog').hide()" styleClass="btnRight"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

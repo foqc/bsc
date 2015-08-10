@@ -57,6 +57,25 @@ public class MTipoUsuario {
         return lstTipoUsuarios;
     }
 
+    public static CTipoUsuario cargarRolPorCodigo(int codigo) throws Exception {
+        CTipoUsuario objRol = new CTipoUsuario();
+        try {
+            ArrayList<Parametro> lstParamRol = new ArrayList<>();
+            String sql = "select * from bsc.fn_selectxcodigo_ttipousuario(?)";
+            lstParamRol.add(new Parametro(1, codigo));
+
+            ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lstParamRol);
+            while (rs.next()) {
+                objRol.setCodigo(rs.getInt(0));
+                objRol.setDescripcion(rs.getString(1));
+            }
+            rs = null;
+        } catch (Exception e) {
+            throw e;
+        }
+        return objRol;
+    }
+
     public static boolean actualizarTipoUsuario(CTipoUsuario tipoUsuario) throws Exception {
         boolean respuesta = false;
         try {

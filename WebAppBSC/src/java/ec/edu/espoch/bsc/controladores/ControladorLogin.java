@@ -1,55 +1,75 @@
 package ec.edu.espoch.bsc.controladores;
 
+import ec.edu.espoch.bsc.entidades.CTipoUsuario;
+import ec.edu.espoch.bsc.entidades.CUsuario;
 import ec.edu.espoch.bsc.modelo.MLogin;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
+import recursos.Util;
 
 public class ControladorLogin implements Serializable {
 
     private static final long serialVersionUID = -2152389656664659476L;
-    private String nombre;
-    private String clave;
+    private CUsuario objUsuario;
     private boolean logeado = false;
 
     public boolean estaLogeado() {
         return logeado;
     }
 
-    public String getNombre() {
-        return nombre;
+    public ControladorLogin() {
+        this.objUsuario = new CUsuario();
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public CUsuario getObjUsuario() {
+        return objUsuario;
     }
 
-    public String getClave() {
-        return clave;
+    public void setObjUsuario(CUsuario objUsuario) {
+        this.objUsuario = objUsuario;
     }
 
-    public void setClave(String clave) {
-        this.clave = clave;
+    @PostConstruct
+    public void reinit() {
+        CTipoUsuario objTipo = new CTipoUsuario();
+        this.objUsuario.setObjTipoUsuario(objTipo);
     }
 
-    public void login(ActionEvent actionEvent) throws Exception {
-        RequestContext context = RequestContext.getCurrentInstance();
-        FacesMessage msg = null;
-        if (MLogin.loginUsuario(nombre, clave)) {
-            logeado = true;
-            msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", nombre);
-        } else {
-            logeado = false;
-            msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error",
-                    "Credenciales no válidas");
+    public void login(ActionEvent actionEvent) {
+        try {
+            RequestContext context = RequestContext.getCurrentInstance();
+            FacesMessage msg = null;
+            if (MLogin.loginUsuario(objUsuario)!=null) {
+                this.objUsuario=MLogin.loginUsuario(objUsuario);
+                logeado = true;
+                msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", objUsuario.getAlias());
+            } else {
+                logeado = false;
+                msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error",
+                        "Credenciales no válidas");
+            }
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+            context.addCallbackParam("estaLogeado", logeado);
+            if (logeado) {
+                redireccionarPaginas(context);
+            }
+        } catch (Exception e) {
+            Util.addErrorMessage(e.getMessage());
         }
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        context.addCallbackParam("estaLogeado", logeado);
-        if (logeado) {
-            context.addCallbackParam("view", "faces/usuario/ListUser.xhtml");
+    }
+    
+    private void redireccionarPaginas(RequestContext context){
+        switch(this.objUsuario.getObjTipoUsuario().getDescripcion()){
+            case "Administrador":
+                context.addCallbackParam("view", "Administrador/usuario/ListUser.xhtml");
+                break;
+            default:
+                context.addCallbackParam("view", "UsuarioNormal/user.xhtml");
         }
     }
 

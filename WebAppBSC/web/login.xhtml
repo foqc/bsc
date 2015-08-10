@@ -4,30 +4,74 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
-
-
     <h:head>
+        <title>Autentificación - BSC</title>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
-    </h:head> <h:body style="text-align:center">
+    </h:head> 
+    <h:body>
         <p:growl id="mensajes" showDetail="true" life="2000" />
-        <h:form>
-            <p:panel header="Login" style="width:300px">
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputLabel for="username" value="Usuario:" />
-                    <p:inputText value="#{controladorLogin.nombre}" id="username"
-                                 required="true" label="username" />
-                    <h:outputLabel for="password" value="Clave:" />
-                    <p:password value="#{controladorLogin.clave}" id="password" required="true"
-                                label="password" />
-                    <f:facet name="footer">
-                        <p:commandButton id="loginButton" value="Login"
-                                         actionListener="#{controladorLogin.login}" update=":mensajes"
-                                         oncomplete="manejarLogin(xhr, status, args)" />
-                    </f:facet>
-                </h:panelGrid>
-            </p:panel>
-        </h:form>
+
+
+        <p:layoutUnit position="north" size="100" styleClass="myBorder" >
+            <div class="centro">
+                <p:graphicImage   value="/resources/images/chipFIE.png"   styleClass="imgPrincipal"/>                    
+                <p:graphicImage   value="/resources/images/SGI.png"  styleClass="imgPrincipal1"/>
+                <div class="menu">
+                    <h:form id="menuForm">
+                        <p:menubar>
+                            <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                            <p:menuitem value="Login" outcome="login.xhtml" icon="ui-icon-home"/>
+                        </p:menubar>
+                    </h:form>
+                </div>
+            </div>
+        </p:layoutUnit>
+
+        <p:layoutUnit position="center">
+            <div class="contenido">
+
+                <div class="page-header">
+                    <!-- <h:outputText value="BALANCED SCORE CARD" styleClass="titulo textoPie" /> -->
+                    <h1>BALANCED SCORE CARD</h1>
+                </div>
+                <div class="well">
+                    <div class="centradoLogin">
+                        <h:form>
+                            <p:panel header="Acceso" style="width:300px">
+                                <h:panelGrid columns="2" cellpadding="5">
+                                    <h:outputLabel for="username" value="Usuario:" />
+                                    <p:inputText value="#{controladorLogin.objUsuario.alias}" id="username"
+                                                 required="true" label="username" />
+                                    <h:outputLabel for="password" value="Clave:" />
+                                    <p:password value="#{controladorLogin.objUsuario.clave}" id="password" required="true"
+                                                label="password" />
+                                    <f:facet name="footer">
+                                        <p:commandButton id="loginButton" value="Iniciar Sesión"
+                                                         actionListener="#{controladorLogin.login}" update=":mensajes"
+                                                         oncomplete="manejarLogin(xhr, status, args)" />
+                                    </f:facet>
+                                </h:panelGrid>
+                            </p:panel>
+                        </h:form>
+                    </div>
+                    <p style="text-align: justify">
+                        Los precios mostrados corresponden a búsquedas de vuelos realizadas recientemente por clientes. Estos precios pueden cambiar según la disponibilidad de plazas, posibles variaciones de tarifas, tasas y otros suplementos en el momento de realizar la consulta.
+                        Te llevamos directamente en autobús desde tu ciudad hasta la T4 del aeropuerto de Barajas.
+                        Con carácter general, las relaciones entre FOQC, Líneas Aéreas de España, S.A., en lo sucesivo FOQC, y sus clientes derivadas de la contratación de los productos y servicios contenidos en la presente web se encuentran sometidas a la legislación y jurisdicción españolas.
+                        Este Website ha sido creado por FOQC, con carácter informativo y para uso personal
+                        El hecho de acceder a este website implica el conocimiento y aceptación de los siguientes términos y condiciones.
+                    </p>
+                </div>
+            </div>
+        </p:layoutUnit>
+
+        <p:layoutUnit position="south" size="110" styleClass="myBorder">
+            <div class="centro">
+                <p:graphicImage  value="/resources/images/CONECTADOS.png"  styleClass="imgPiePrincipal"/><br></br>
+                <h:outputText value="Todos los derechos reservados fie." styleClass="textoPie"/>
+            </div>
+        </p:layoutUnit>
     </h:body>
     <script type="text/javascript">
         //<![CDATA[

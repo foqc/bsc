@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <title><ui:insert name="title">Default Title</ui:insert></title>
@@ -15,53 +16,79 @@
 
         <p:growl id="growl" life="3000" />
 
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="65" header="Balance Score Card">
-                <h:form id="menuForm">
-                    <p:menubar>
-                        <p:menuitem value="Inicio" outcome="/index.html" icon="ui-icon-home"/>
-                        <p:menuitem value="Areas" outcome="/index.html" icon="ui-icon-home"/>
-                        <p:menuitem value="Perspectivas" outcome="/index.html" icon="ui-icon-home"/>
-                        <p:menuitem value="Objetivos" outcome="/index.html" icon="ui-icon-home"/>
-                        <p:menuitem value="Proyectos" outcome="/index.html" icon="ui-icon-home"/>
-                        <p:submenu label="Otros">
-                            <!-- <p:menuitem value="Taccion" outcome="/taccion/List.xhtml" />
-                             <p:menuitem value="Tarchivo" outcome="/tarchivo/List.xhtml" />
-                             <p:menuitem value="Tarchivoproyecto" outcome="/tarchivoproyecto/List.xhtml" />
-                             <p:menuitem value="Tbsc" outcome="/tbsc/List.xhtml" />
-                             
-                             <p:menuitem value="Tobjetivo" outcome="/tobjetivo/List.xhtml" />
-                             <p:menuitem value="Tperspectiva" outcome="/tperspectiva/List.xhtml" />
-                             <p:menuitem value="Tporcentaje" outcome="/tporcentaje/List.xhtml" />
-                             <p:menuitem value="Tproyecto" outcome="/tproyecto/List.xhtml" />
-                             <p:menuitem value="Treporte" outcome="/treporte/List.xhtml" />
-                             <p:menuitem value="Tresponsable" outcome="/tresponsable/List.xhtml" />-->
-                            <p:menuitem value="Tipo Dependencia" outcome="/tipoDependencia/ListTipoDependencia.xhtml" />
-                            <p:menuitem value="Dependencia" outcome="/dependencia/ListDependencia.xhtml" />
-                            <p:menuitem value="Visión" outcome="/vision/ListVision.xhtml" />
-                            <p:menuitem value="Porcentaje" outcome="/porcentaje/ListPorcentaje.xhtml" />
-                        </p:submenu>
 
-                        <p:submenu label="Personas" icon="ui-icon-person">
-                            <p:menuitem value="Usuario" outcome="/usuario/ListUser.xhtml" />
-                            <p:menuitem value="Rol" outcome="/rol/ListRol.xhtml" /> 
-                            <p:menuitem value="Responsable" outcome="/responsable/Listar.xhtml" />
-                            <p:menuitem value="Permisos" outcome="/vision/ListVision.xhtml" />
-                        </p:submenu>
-                    </p:menubar>
-                </h:form>
-            </p:layoutUnit>
+        <p:layoutUnit position="north" size="100" styleClass="myBorder" >
+            <div class="centro">
+                <p:graphicImage   value="/resources/images/chipFIE.png"   styleClass="imgPrincipal"/>                    
+                <p:graphicImage   value="/resources/images/SGI.png"  styleClass="imgPrincipal1"/>
+            </div>
+            <h:form id="menuForm">
+                <p:menubar>
+                    <p:menuitem value="Inicio" outcome="/index.html" icon="ui-icon-home"/>
+                    <p:menuitem value="Areas" outcome="/index.html" icon="ui-icon-home"/>
+                    <p:menuitem value="Perspectivas" outcome="/index.html" icon="ui-icon-home"/>
+                    <p:menuitem value="Objetivos" outcome="/index.html" icon="ui-icon-home"/>
+                    <p:menuitem value="Proyectos" outcome="/index.html" icon="ui-icon-home"/>
+                    <p:submenu label="Otros">
+                        <!-- <p:menuitem value="Taccion" outcome="/taccion/List.xhtml" />
+                         <p:menuitem value="Tarchivo" outcome="/tarchivo/List.xhtml" />
+                         <p:menuitem value="Tarchivoproyecto" outcome="/tarchivoproyecto/List.xhtml" />
+                         <p:menuitem value="Tbsc" outcome="/tbsc/List.xhtml" />
+                         
+                         <p:menuitem value="Tobjetivo" outcome="/tobjetivo/List.xhtml" />
+                         <p:menuitem value="Tperspectiva" outcome="/tperspectiva/List.xhtml" />
+                         <p:menuitem value="Tporcentaje" outcome="/tporcentaje/List.xhtml" />
+                         <p:menuitem value="Tproyecto" outcome="/tproyecto/List.xhtml" />
+                         <p:menuitem value="Treporte" outcome="/treporte/List.xhtml" />
+                         <p:menuitem value="Tresponsable" outcome="/tresponsable/List.xhtml" />-->
+                        <p:menuitem value="Tipo Dependencia" outcome="/Administrador/tipoDependencia/ListTipoDependencia.xhtml" />
+                        <p:menuitem value="Dependencia" outcome="/Administrador/dependencia/ListDependencia.xhtml" />
+                        <p:menuitem value="Visión" outcome="/Administrador/vision/ListVision.xhtml" />
+                        <p:menuitem value="Porcentaje" outcome="/Administrador/porcentaje/ListPorcentaje.xhtml" />
+                    </p:submenu>
 
-            <p:layoutUnit position="south" size="60">
-                <ui:insert name="footer"/>
-            </p:layoutUnit>
+                    <p:submenu label="Personas" icon="ui-icon-person">
+                        <p:menuitem value="Usuario" outcome="/Administrador/usuario/ListUser.xhtml" />
+                        <p:menuitem value="Rol" outcome="/Administrador/rol/ListRol.xhtml" /> 
+                        <p:menuitem value="Responsable" outcome="/Administrador/responsable/Listar.xhtml" />
+                        <p:menuitem value="Permisos" outcome="/Administrador/vision/ListVision.xhtml" />
+                    </p:submenu>
+                    <p:submenu label="#{controladorLogin.objUsuario.alias}" icon="ui-icon-gear" style="float: right;margin-right: 100px;">
+                        <p:menuitem value="Mis Datos"  outcome="/Administrador/misdatos/ListUser.xhtml" icon="ui-icon-contact"/>
+                        <p:menuitem value="Ayuda"  outcome="/Administrador/responsable/Listar.xhtml" icon="ui-icon-help"/>                            
+                        <p:separator />
+                        <p:menuitem value="Salir" actionListener="#{controladorLogin.logout}"
+                                    style="margin-right:20px;"
+                                    oncomplete="logout(xhr, status, args)" icon="ui-icon-extlink"/>
+                    </p:submenu>
+                    <f:facet name="options">
+                        <p:inputText style="margin-right:10px" placeholder="Buscar"/>
+                    </f:facet>
+                </p:menubar>
 
-            <p:layoutUnit position="center">
-                <ui:insert name="body"/>
-            </p:layoutUnit>
+            </h:form>
+        </p:layoutUnit>
 
-        </p:layout>
+
+
+        <p:layoutUnit position="center">
+            <ui:insert name="body"/>
+        </p:layoutUnit>
+
+        <p:layoutUnit position="south" size="110" styleClass="myBorder" >
+            <div class="centro">
+                <p:graphicImage  value="/resources/images/CONECTADOS.png"  styleClass="imgPiePrincipal"/><br></br>
+                <h:outputText value="Todos los derechos reservados fie." styleClass="textoPie"/>
+            </div>
+            <ui:insert name="footer"/>
+        </p:layoutUnit>
 
     </h:body>
+    <script type="text/javascript">
+        function logout(xhr, status, args) {
+            setTimeout(function () {
+                window.location = '../login.xhtml';
+            }, 500);
+        }</script>
 
 </html>

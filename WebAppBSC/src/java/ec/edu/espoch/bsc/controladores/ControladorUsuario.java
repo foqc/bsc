@@ -13,8 +13,9 @@ import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 import org.primefaces.context.DefaultRequestContext;
-import org.primefaces.context.RequestContext;
 import recursos.Util;
 
 /**
@@ -23,15 +24,17 @@ import recursos.Util;
  */
 @ManagedBean
 @ViewScoped
-public class ControladorUsuario implements Serializable{
+public class ControladorUsuario implements Serializable {
 
     private CUsuario objUsuario;
     private CUsuario selObjUsuario;
     private ArrayList<CUsuario> lstUsuarios;
+    private ArrayList<CUsuario> objUsuarioSesion;
 
     public ControladorUsuario() {
         this.objUsuario = new CUsuario();
         this.lstUsuarios = new ArrayList<>();
+        this.objUsuarioSesion = new ArrayList<>();
         this.selObjUsuario = new CUsuario();
     }
 
@@ -59,6 +62,14 @@ public class ControladorUsuario implements Serializable{
         this.lstUsuarios = lstUsuarios;
     }
 
+    public ArrayList<CUsuario> getObjUsuarioSesion() {
+        return objUsuarioSesion;
+    }
+
+    public void setObjUsuarioSesion(ArrayList<CUsuario> objUsuarioSesion) {
+        this.objUsuarioSesion = objUsuarioSesion;
+    }
+
     /*
      postonstructor se ejecuta luego del constructor
      */
@@ -68,6 +79,7 @@ public class ControladorUsuario implements Serializable{
         this.objUsuario.setObjTipoUsuario(objTipo);
         this.selObjUsuario.setObjTipoUsuario(objTipo);
         cargarUsuario();
+        cargarUsuarioPorSesion();
 
     }
     /*
@@ -78,14 +90,25 @@ public class ControladorUsuario implements Serializable{
         try {
             this.lstUsuarios = (ArrayList<CUsuario>) MUsuario.cargarUsuarios();
         } catch (Exception e) {
-            System.err.println("e" + e.getMessage());
+            Util.addErrorMessage(e.getMessage());
+        }
+    }
+
+    public void cargarUsuarioPorSesion() {
+        try {
+            HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+                    .getExternalContext().getSession(false);
+            ControladorLogin loginBean = (ControladorLogin) session.getAttribute("controladorLogin");
+
+            this.objUsuarioSesion = (ArrayList<CUsuario>) MUsuario.cargarUsuarioPorSesion(loginBean.getObjUsuario());
+        } catch (Exception e) {
+            Util.addErrorMessage(e.getMessage());
         }
     }
 
     //<editor-fold defaultstate="collapsed" desc="Insertar Usuario">
     public void insertarUsuario() {
         try {
-            objUsuario.setClave("12345");
             if (MUsuario.insertarUsuario(objUsuario)) {
                 cargarUsuario();
                 Util.addSuccessMessage("Datos insertados!");
@@ -100,11 +123,44 @@ public class ControladorUsuario implements Serializable{
     //</editor-fold>    
     //<editor-fold defaultstate="collapsed" desc="Actualizar Usuario">
     public void actualizarPersona() {
+        Boolean resp = false,resp1=false;
         try {
-            if (MUsuario.actualizarUsuario(selObjUsuario)) {
+            /*pregunto si hay dato en el campo clave, para de acuerdo a eso,
+              lanzar la funcion pgsql determinado, esto xq una funcion
+              encripta la clave al actualizar, y si va el campo vacio lo encripta
+              de igual manera generando una contrasenia distinta,  por ello uso 2 funciones pgsql
+              donde el otro simplemente si no hay clave se queda con la clave original*/
+            if (selObjUsuario.getClave().isEmpty()) {
+                if (MUsuario.actualizarUsuarioSinClave(selObjUsuario)) {
+                    resp = true;
+                }
+            } else {
+                if (MUsuario.actualizarUsuario(selObjUsuario)) {
+                    resp = true;resp1=true;
+                }
+            }
+            if (resp) {
                 cargarUsuario();
+                if(resp1)
+                    cargarUsuarioPorSesion();//actualiza objUsuarioSesion(ojo no es la variable de sesion)
+
+                /**
+                 * ***** actualizo sesion(esto en caso que se haya cambiado tipo
+                 * usuario o contrasenia)    *******
+                 */
+                HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+                        .getExternalContext().getSession(false);
+                ControladorLogin loginBean = (ControladorLogin) session.getAttribute("controladorLogin");
+                ArrayList<CUsuario> myUser = (ArrayList<CUsuario>) MUsuario.cargarUsuarioPorSesion(loginBean.getObjUsuario());
+                for (CUsuario myUser1 : myUser) {
+                    loginBean.setObjUsuario(myUser1);
+                }
+                /**
+                 * ***** fin actualizo sesion    *******
+                 */
+
                 DefaultRequestContext.getCurrentInstance().execute("PF('TusuarioEditDialog').hide()");
-                Util.addSuccessMessage("Datos actualizados!");                
+                Util.addSuccessMessage("Datos actualizados!");
             } else {
                 Util.mostrarMensaje("Datos no actualizados!");
             }

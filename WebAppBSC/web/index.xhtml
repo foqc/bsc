@@ -11,57 +11,51 @@
         <h:outputScript library="js" name="jsfcrud.js"/>
     </h:head>
 
-    <h:body>
+    <h:body styleClass="myBody">
 
         <p:growl id="growl" life="3000" />
 
-        <p:layout fullPage="true" >
-            <div>
-                <h1>Balanced Score Card</h1>
+
+        <p:layoutUnit position="north" size="100"  >
+            <div class="centro">
+                <p:graphicImage   value="/resources/images/chipFIE.png"   styleClass="imgPrincipal"/>                    
+                <p:graphicImage   value="/resources/images/SGI.png"  styleClass="imgPrincipal1"/>
+                <div class="menu">
+                    <h:form id="menuForm">
+                        <p:menubar>
+                            <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                            <p:menuitem value="Login" outcome="login.xhtml" icon="ui-icon-home"/>
+                        </p:menubar>
+                    </h:form>
+                </div>
             </div>
-            <p:layoutUnit position="north" size="120" styleClass="principal">
-                
-                <p:graphicImage  height="96" width="96" value="/resources/images/chipFIE.png"  styleClass="imgPrincipal"/>
-                <p:graphicImage  height="96" width="96" value="/resources/images/SGI.png"  styleClass="imgPrincipal"/>
-                <p:graphicImage  value="/resources/images/CONECTADOS.png"  styleClass="imgPrincipal"/>
-                <h:form id="menuForm" styleClass="">
-                    <p:menubar>
-                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                        <p:submenu label="#{bundle.Maintenance}">
-                           <!-- <p:menuitem value="Taccion" outcome="/taccion/List.xhtml" />
-                            <p:menuitem value="Tarchivo" outcome="/tarchivo/List.xhtml" />
-                            <p:menuitem value="Tarchivoproyecto" outcome="/tarchivoproyecto/List.xhtml" />
-                            <p:menuitem value="Tbsc" outcome="/tbsc/List.xhtml" />
-                            <p:menuitem value="Tdependencia" outcome="/tdependencia/List.xhtml" />
-                            <p:menuitem value="Tobjetivo" outcome="/tobjetivo/List.xhtml" />
-                            <p:menuitem value="Tperspectiva" outcome="/tperspectiva/List.xhtml" />
-                            <p:menuitem value="Tporcentaje" outcome="/tporcentaje/List.xhtml" />
-                            <p:menuitem value="Tproyecto" outcome="/tproyecto/List.xhtml" />
-                            <p:menuitem value="Treporte" outcome="/treporte/List.xhtml" />
-                            <p:menuitem value="Tresponsable" outcome="/tresponsable/List.xhtml" />
-                            <p:menuitem value="Ttipodependencia" outcome="/ttipodependencia/List.xhtml" />-->
-                            <p:menuitem value="Rol" outcome="/rol/ListRol.xhtml" /> 
-                            <p:menuitem value="Usuario" outcome="/usuario/ListUser.xhtml" />
-                            <!--
-                            <p:menuitem value="Tvision" outcome="/tvision/List.xhtml" /> -->
-                        </p:submenu>
-                    </p:menubar>
-                </h:form>
-            </p:layoutUnit>
+        </p:layoutUnit>
 
-            <p:layoutUnit position="south" size="60">
-                <ui:insert name="footer"/>
-                                <p:graphicImage  value="/resources/images/CONECTADOS.png"  styleClass="imgPrincipal"/>
-            </p:layoutUnit>
+        <p:layoutUnit position="center">
+            <div class="contenido">
 
-            <p:layoutUnit position="center">
-                <ui:insert name="body"/>
-            </p:layoutUnit>
+                <div class="page-header">
+                    <!-- <h:outputText value="BALANCED SCORE CARD" styleClass="titulo textoPie" /> -->
+                    <h1>BALANCED SCORE CARD</h1>
+                </div>
+                <div class="well">
+                    <p style="text-align: justify">
+                        Los precios mostrados corresponden a búsquedas de vuelos realizadas recientemente por clientes. Estos precios pueden cambiar según la disponibilidad de plazas, posibles variaciones de tarifas, tasas y otros suplementos en el momento de realizar la consulta.
+                        Te llevamos directamente en autobús desde tu ciudad hasta la T4 del aeropuerto de Barajas.
+                        Con carácter general, las relaciones entre FOQC, Líneas Aéreas de España, S.A., en lo sucesivo FOQC, y sus clientes derivadas de la contratación de los productos y servicios contenidos en la presente web se encuentran sometidas a la legislación y jurisdicción españolas.
+                        Este Website ha sido creado por FOQC, con carácter informativo y para uso personal
+                        El hecho de acceder a este website implica el conocimiento y aceptación de los siguientes términos y condiciones.
+                    </p>
+                </div>
+            </div>
+        </p:layoutUnit>
 
-        </p:layout>
+        <p:layoutUnit position="south" size="110" resizable="true" closable="true" collapsible="true">           
+                <p:graphicImage  value="/resources/images/CONECTADOS.png"  styleClass="imgPiePrincipal"/><br></br>
+                <h:outputText value="Todos los derechos reservados fie." styleClass="textoPie"/>
+        </p:layoutUnit>
 
     </h:body>
 
 </html>
-
 

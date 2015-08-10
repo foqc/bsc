@@ -1,43 +1,43 @@
 .ubicacion{
-	float: right;
+    float: right;
 }
 
 footer {
-  margin-top: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  background-color: #efefef;
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #efefef;
 }
 
 .areaImagen{
-	margin-top: 40px;
+    margin-top: 40px;
 }
 
 .panel-default>.panel-heading {
-  background-color: #FFFAFA;
+    background-color: #FFFAFA;
 }
 
 
 /*	ESTILO PAGINA PRINCIPAL		*/
 .navbar {
-  border-radius: 0px;
+    border-radius: 0px;
 }
 
 .panel-success>.panel-principal {
-  color: #3c763d;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
 }
 
 .txt-precio{
-	color: #d7192d;
-  font-size: 2.143em;
-  display: block;
+    color: #d7192d;
+    font-size: 2.143em;
+    display: block;
 }
 
-  
+
 .badge {
-  background-color: #AE1515;
+    background-color: #AE1515;
 }
 
 
@@ -52,6 +52,26 @@ footer {
     float: right;
 }
 .navbar-inverse {
-  background-color: #08417F;
-  border-color: #08417F;
+    background-color: #08417F;
+    border-color: #08417F;
+}
+
+
+#container1{
+    position: relative;
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+}
+#miContenido{
+    padding-bottom: 40px;
+}
+
+
+#pie {
+    width: 100%;
+    position: absolute;
+    bottom: 0 !important;
+    bottom: -1px;
+    height: 40px;
 }

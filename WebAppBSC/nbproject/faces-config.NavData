@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="Administrador/porcentaje/ViewPorcentaje.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="Administrador/porcentaje/EditPorcentaje.xhtml" x="1295" y="335" zoom="true"/>
+        <Node id="Administrador/rol/DeleteRol.xhtml" x="1285" y="240" zoom="true"/>
+        <Node id="Administrador/usuario/ViewUser.xhtml" x="1334" y="123" zoom="true"/>
+        <Node id="Administrador/tipoDependencia/EditTipoDependencia.xhtml" x="1267" y="206" zoom="true"/>
+        <Node id="Administrador/responsable/Eliminar.xhtml" x="30" y="175" zoom="true"/>
+        <Node id="Administrador/responsable/Editar.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="Administrador/vision/EditVision.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="Administrador/rol/ViewRol.xhtml" x="44" y="46" zoom="true"/>
+        <Node id="Administrador/usuario/CreateUser.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="Administrador/vision/ViewVision.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="Administrador/dependencia/ListDependencia.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="Administrador/dependencia/ViewDependencia.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="Administrador/tipoDependencia/CreateTipoDependencia.xhtml" x="487" y="180" zoom="true"/>
+        <Node id="Administrador/usuario/ListUser.xhtml" x="427" y="54" zoom="true"/>
+        <Node id="Administrador/responsable/Crear.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="Administrador/vision/ListVision.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="login.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="Administrador/porcentaje/CreatePorcentaje.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="Administrador/usuario/DeleteUser.xhtml" x="1338" y="60" zoom="true"/>
+        <Node id="Administrador/tipoDependencia/ListTipoDependencia.xhtml" x="35" y="225" zoom="true"/>
+        <Node id="Administrador/vision/CreateVision.xhtml" x="37" y="279" zoom="true"/>
+        <Node id="Administrador/responsable/Vista.xhtml" x="40" y="106" zoom="true"/>
+        <Node id="Administrador/tipoDependencia/DeleteTipoDependencia.xhtml" x="1228" y="170" zoom="true"/>
+        <Node id="Administrador/rol/ListRol.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="Administrador/responsable/Listar.xhtml" x="510" y="276" zoom="true"/>
+        <Node id="Administrador/dependencia/CreateDependencia.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="Administrador/dependencia/EditDependencia.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="index.html" x="844" y="66" zoom="true"/>
+        <Node id="Administrador/rol/CreateRol.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="Administrador/porcentaje/DeletePorcentaje.xhtml" x="1300" y="277" zoom="true"/>
+        <Node id="index.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="Administrador/usuario/EditUser.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="Administrador/tipoDependencia/ViewTipoDependencia.xhtml" x="432" y="107" zoom="true"/>
+        <Node id="plantilla/template.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="Administrador/dependencia/DeleteDependencia.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="Administrador/porcentaje/ListPorcentaje.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="Administrador/vision/DeleteVision.xhtml" x="400" y="1050" zoom="true"/>
+        <Node id="Administrador/rol/EditRol.xhtml" x="150" y="1050" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>
