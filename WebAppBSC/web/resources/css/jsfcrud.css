@@ -121,3 +121,14 @@ body {
     margin: 0 auto;
     width: 307px
 }
+
+
+.maxContenido1{
+    min-height: 397px;
+}
+.ui-layout-unit.ui-widget.ui-widget-content.ui-corner-all.ui-layout-center.maxContenido{
+    min-height: 418px;
+}
+.ui-layout-unit.ui-widget.ui-widget-content.ui-corner-all.ui-layout-center.maxContenidoLogin{
+    min-height: 455px;
+}
