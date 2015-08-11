@@ -39,4 +39,22 @@ public class RolBean {
         }
         return this.selectOneItemsRol;
     }
+
+    //Devuelve lista de roles a excepcion de usuario administrador
+
+    public List<SelectItem> getSelectOneItemsRolSinAdmin() {
+        try {
+            this.selectOneItemsRol = new ArrayList<>();
+            List<CTipoUsuario> roles = MTipoUsuario.cargarTipoUsuarios();
+            for (CTipoUsuario rol : roles) {
+                if (!rol.getDescripcion().equals("Administrador")) {
+                    SelectItem selectItem = new SelectItem(rol.getCodigo(), rol.getDescripcion());
+                    this.selectOneItemsRol.add(selectItem);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("%%%%%%%%%%%%%%%%%%%% " + e.getMessage() + "%%%%%%%%%%%%%%%%%%%%");
+        }
+        return this.selectOneItemsRol;
+    }
 }

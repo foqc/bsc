@@ -16,6 +16,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.DefaultRequestContext;
+import org.primefaces.context.RequestContext;
 import recursos.Util;
 
 /**
@@ -115,6 +116,22 @@ public class ControladorUsuario implements Serializable {
             } else {
                 Util.mostrarMensaje("Datos no insertados!");
             }
+        } catch (Exception e) {
+            Util.addErrorMessage(e.getMessage());
+        }
+    }
+    //<editor-fold defaultstate="collapsed" desc="Registrar Usuario">
+    public void registrarUsuario() {
+        try {
+            RequestContext context = RequestContext.getCurrentInstance();
+            if (MUsuario.insertarUsuario(objUsuario)) {
+                cargarUsuario();
+                Util.addSuccessMessage("Usted se ha registrado correctamente en el sistema.!");
+            } else {
+                Util.mostrarMensaje("Lo sentimos no se ha podido registrar sus datos, por favor vuelva intentarlo.!");
+            }
+            
+            context.addCallbackParam("correcto", true);
         } catch (Exception e) {
             Util.addErrorMessage(e.getMessage());
         }

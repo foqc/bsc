@@ -3,37 +3,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Autentificación - BSC</title>
-        <h:outputStylesheet library="css" name="jsfcrud.css"/>
-        <h:outputScript library="js" name="jsfcrud.js"/>
-    </h:head> 
-    <h:body>
-        <p:growl id="mensajes" showDetail="true" life="2000" />
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/plantilla/templatePrincipal.xhtml">
 
 
-        <p:layoutUnit position="north" size="100" styleClass="myBorder" >
-            <div class="centro">
-                <p:graphicImage   value="/resources/images/chipFIE.png"   styleClass="imgPrincipal"/>                    
-                <p:graphicImage   value="/resources/images/SGI.png"  styleClass="imgPrincipal1"/>
-                <div class="menu">
-                    <h:form id="menuForm">
-                        <p:menubar>
-                            <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                            <p:menuitem value="Login" outcome="login.xhtml" icon="ui-icon-home"/>
-                        </p:menubar>
-                    </h:form>
-                </div>
-            </div>
-        </p:layoutUnit>
+        <ui:define name="title">
+            <h:outputText value="Autentificación - BSC"></h:outputText>
+        </ui:define>
 
-        <p:layoutUnit position="center" styleClass="maxContenidoLogin">
-            <div class="contenido">
+        <ui:define name="body">
+            <div class="contenido" >
 
                 <div class="page-header">
-                    <!-- <h:outputText value="BALANCED SCORE CARD" styleClass="titulo textoPie" /> -->
-                    <h1>BALANCED SCORE CARD</h1>
+                    <center>
+                        <h1>INGRESO AL SISTEMA</h1>
+                    </center>
                 </div>
                 <div class="well">
                     <div class="centradoLogin">
@@ -55,34 +40,21 @@
                             </p:panel>
                         </h:form>
                     </div>
-                    <p style="text-align: justify">
-                        Los precios mostrados corresponden a búsquedas de vuelos realizadas recientemente por clientes. Estos precios pueden cambiar según la disponibilidad de plazas, posibles variaciones de tarifas, tasas y otros suplementos en el momento de realizar la consulta.
-                        Te llevamos directamente en autobús desde tu ciudad hasta la T4 del aeropuerto de Barajas.
-                        Con carácter general, las relaciones entre FOQC, Líneas Aéreas de España, S.A., en lo sucesivo FOQC, y sus clientes derivadas de la contratación de los productos y servicios contenidos en la presente web se encuentran sometidas a la legislación y jurisdicción españolas.
-                        Este Website ha sido creado por FOQC, con carácter informativo y para uso personal
-                        El hecho de acceder a este website implica el conocimiento y aceptación de los siguientes términos y condiciones.
-                    </p>
                 </div>
             </div>
-        </p:layoutUnit>
 
-        <p:layoutUnit position="south" size="110" styleClass="myBorder">
-            <div class="centro">
-                <p:graphicImage  value="/resources/images/CONECTADOS.png"  styleClass="imgPiePrincipal"/><br></br>
-                <h:outputText value="Todos los derechos reservados fie." styleClass="textoPie"/>
-            </div>
-        </p:layoutUnit>
-    </h:body>
-    <script type="text/javascript">
-        //<![CDATA[
-        function manejarLogin(xhr, status, args) {
-            if (!args.validationFailed && args.estaLogeado) {
-                setTimeout(function () {
-                    window.location = args.view;
-                }, 500);
-            }
-        }
-        //]]>
-    </script>
+            <script type="text/javascript">
+                //<![CDATA[
+                function manejarLogin(xhr, status, args) {
+                    if (!args.validationFailed && args.estaLogeado) {
+                        setTimeout(function () {
+                            window.location = args.view;
+                        }, 2000);
+                    }
+                }
+                //]]>
+            </script>
+        </ui:define>
+    </ui:composition>
 </html>
 

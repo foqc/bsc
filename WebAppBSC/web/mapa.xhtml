@@ -5,113 +5,66 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
 
-    <h:head>
-        <title><ui:insert name="title">Bienvenidos - BSC</ui:insert></title>
-        <h:outputStylesheet library="css" name="jsfcrud.css"/>
-        <h:outputScript library="js" name="jsfcrud.js"/>
-    </h:head>
-
-    <h:body styleClass="myBody">
-
-        <p:growl id="growl" life="3000" />
+    <ui:composition template="/plantilla/templatePrincipal.xhtml">
 
 
-        <p:layoutUnit position="north" size="100"  >
-            <div class="centro">
-                <p:graphicImage   value="/resources/images/chipFIE.png"   styleClass="imgPrincipal"/>                    
-                <p:graphicImage   value="/resources/images/SGI.png"  styleClass="imgPrincipal1"/>
-                <div class="menu">
-                    <h:form id="menuForm">
-                        <p:menubar>
-                            <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
-                            <p:menuitem value="Login" outcome="login.xhtml" icon="ui-icon-home"/>
-                        </p:menubar>
-                    </h:form>
-                </div>
-            </div>
-        </p:layoutUnit>
+        <ui:define name="title">
+            <h:outputText value="Mapa estratégico - BSC"></h:outputText>
+        </ui:define>
 
-        <p:layoutUnit position="center" styleClass="maxContenido1">
+        <ui:define name="body">
             <div class="contenido">
 
                 <div class="page-header">
                     <!-- <h:outputText value="BALANCED SCORE CARD" styleClass="titulo textoPie" /> -->
-                    <h1>BALANCED SCORE CARD</h1>
+                    <center>
+                        <h1>MAPA ESTRATÉGICO FIE - BALANCED SCORE CARD</h1>
+                    </center>
                 </div>
                 <div class="well">
                     Perspectiva Partes Interesadas
                     <h:form>
-                        <p:mindmap value="#{mindMapBean.partesInteresadas}" style="width: 100%;height: 200px;border: 1px solid black;">
-                           
+                        <p:mindmap value="#{mindMapBean.partesInteresadas}"  
+                                   style="width: 100%;height: 400px;border: 1px solid black;" rendered="true">
                             <p:ajax event="select" listener="#{mindMapBean.onNodeSelect}" />
-                            <p:ajax event="dblselect" listener="#{mindMapBean.onNodeDblselect}" update="output1" oncomplete="PF('details').show();" />
+                            <p:ajax event="dblselect" listener="#{mindMapBean.onNodeDblselect}" update=":output" oncomplete="PF('details').show();" />          
                         </p:mindmap>
-
-                        <p:dialog widgetVar="details" header="Node Details" resizable="false" modal="true" showEffect="fade" hideEffect="fade">
-                            <h:outputText id="output1" value="#{mindMapBean.selectedNode.data}" />
-                        </p:dialog> 
                     </h:form>
                     Perspectiva Sociedad
                     <h:form>
                         <p:mindmap value="#{mindMapBean.sociedad}" style="width: 100%;height: 200px;border: 1px solid black;">
-                           
                             <p:ajax event="select" listener="#{mindMapBean.onNodeSelect}" />
-                            <p:ajax event="dblselect" listener="#{mindMapBean.onNodeDblselect}" update="output1" oncomplete="PF('details').show();" />
+                            <p:ajax event="dblselect" listener="#{mindMapBean.onNodeDblselect}" update=":output" oncomplete="PF('details').show();" />
                         </p:mindmap>
-
-                        <p:dialog widgetVar="details" header="Node Details" resizable="false" modal="true" showEffect="fade" hideEffect="fade">
-                            <h:outputText id="output1" value="#{mindMapBean.selectedNode.data}" />
-                        </p:dialog> 
                     </h:form>
                     Perspectiva Procesos Internos
                     <h:form>
                         <p:mindmap value="#{mindMapBean.procesosInternos}" style="width: 100%;height: 200px;border: 1px solid black;">
-                           
                             <p:ajax event="select" listener="#{mindMapBean.onNodeSelect}" />
-                            <p:ajax event="dblselect" listener="#{mindMapBean.onNodeDblselect}" update="output1" oncomplete="PF('details').show();" />
+                            <p:ajax event="dblselect" listener="#{mindMapBean.onNodeDblselect}" update=":output" oncomplete="PF('details').show();" />
                         </p:mindmap>
-
-                        <p:dialog widgetVar="details" header="Node Details" resizable="false" modal="true" showEffect="fade" hideEffect="fade">
-                            <h:outputText id="output1" value="#{mindMapBean.selectedNode.data}" />
-                        </p:dialog> 
                     </h:form>
-                    
+
                     Perspectiva Recursos Humanos
                     <h:form>
                         <p:mindmap value="#{mindMapBean.recursosHumanos}" style="width: 100%;height: 200px;border: 1px solid black;">
-                           
                             <p:ajax event="select" listener="#{mindMapBean.onNodeSelect}" />
-                            <p:ajax event="dblselect" listener="#{mindMapBean.onNodeDblselect}" update="output1" oncomplete="PF('details').show();" />
+                            <p:ajax event="dblselect" listener="#{mindMapBean.onNodeDblselect}" update=":output" oncomplete="PF('details').show();" />
                         </p:mindmap>
-
-                        <p:dialog widgetVar="details" header="Node Details" resizable="false" modal="true" showEffect="fade" hideEffect="fade">
-                            <h:outputText id="output1" value="#{mindMapBean.selectedNode.data}" />
-                        </p:dialog> 
                     </h:form>
-                    Perspectiva Financiero.
+                    Perspectiva Financiero
                     <h:form>
                         <p:mindmap value="#{mindMapBean.financiera}" style="width: 100%;height: 200px;border: 1px solid black;">
-                           
                             <p:ajax event="select" listener="#{mindMapBean.onNodeSelect}" />
-                            <p:ajax event="dblselect" listener="#{mindMapBean.onNodeDblselect}" update="output1" oncomplete="PF('details').show();" />
+                            <p:ajax event="dblselect" listener="#{mindMapBean.onNodeDblselect}" update=":output" oncomplete="PF('details').show();" />
                         </p:mindmap>
-
-                        <p:dialog widgetVar="details" header="Node Details" resizable="false" modal="true" showEffect="fade" hideEffect="fade">
-                            <h:outputText id="output1" value="#{mindMapBean.selectedNode.data}" />
-                        </p:dialog> 
                     </h:form>
+                    <p:dialog widgetVar="details" header="Detalles" resizable="false" modal="true" showEffect="fade" hideEffect="fade">
+                        <h:outputText id="output" value="#{mindMapBean.selectedNode.data}" />
+                    </p:dialog> 
                 </div>
             </div>
-        </p:layoutUnit>
-
-        <p:layoutUnit position="south" size="110" resizable="true" closable="true" collapsible="true">
-            <div class="centro">
-                <p:graphicImage  value="/resources/images/CONECTADOS.png"  styleClass="imgPiePrincipal"/><br></br>
-                <h:outputText value="Todos los derechos reservados fie." styleClass="textoPie"/>
-            </div>
-        </p:layoutUnit>
-
-    </h:body>
-
+        </ui:define>
+    </ui:composition>
 </html>
 
